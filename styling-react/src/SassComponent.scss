@@ -1,6 +1,6 @@
 .SassCompoent {
   display: flex;
-  background: $oc-gray-2;
+  background: $oc-gray-3;
   @include media("<768px") {
     background: $oc-gray-9;
   }
