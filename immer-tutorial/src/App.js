@@ -1,43 +1,86 @@
-const App = () => {
-  const object = {
-    somewhere: {
-      deep: {
-        inside: 3,
-        array: [1, 2, 3, 4],
-      },
-      bar: 2,
-    },
-    foo: 1,
-  };
-  console.log(object.somewhere.deep.array);
-  // //somewhere .deep.insede 값을 4로 바꾸기
-  // let nextObject = {
-  //   ...object,
-  //   somewhere: {
-  //     ...object.somewhere,
-  //     deep: {
-  //       ...object.somewhere.deep,
-  //       inside: 4,
-  //     },
-  //   },
-  // };
-  // console.log(nextObject.somewhere.deep.inside);
+import { useRef, useCallback, useState } from "react";
 
-  //some here.deep.array에 5추가하기
-  let nextObject = {
-    ...object,
-    somewhere: {
-      ...object.somewhere,
-      deep: {
-        ...object.somewhere.deep,
-        array: object.somewhere.deep.array.concat(5),
-      },
+const App = () => {
+  const nextId = useRef(1);
+  const [form, setForm] = useState({ name: "", username: "" });
+  const [data, setData] = useState({
+    array: [],
+    useLessValue: null,
+  });
+
+  //input 수정을 위함 함수
+  const onChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setForm({
+        ...form,
+        [name]: [value],
+      });
     },
-  };
-  console.log(nextObject.somewhere.deep.array);
+    [form]
+  );
+
+  //array에 새 항목 등록
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const info = {
+        id: nextId.current,
+        name: form.name,
+        username: form.username,
+      };
+
+      // arrya에 새 항목 등록
+      setData({
+        ...data,
+        array: data.array.concat(info),
+      });
+
+      //form 초기화
+      setForm({
+        name: "",
+        username: "",
+      });
+      nextId.current += 1;
+    },
+    [data, form.name, form.username]
+  );
+
+  //항목을 삭제하는 함수
+  const onRemove = useCallback(
+    (id) => {
+      setData({
+        ...data,
+        array: data.array.filter((info) => info.id !== id),
+      });
+    },
+    [data]
+  );
+
   return (
     <div>
-      <div>immer를 사용하지 않고 불변성 유지</div>
+      <form onSubmit={onSubmit}>
+        <input
+          name="username"
+          placeholder=" 아이디"
+          value={form.username}
+          onChange={onChange}
+        />
+        <input
+          name="name"
+          placeholder="이름"
+          value={form.name}
+          onChange={onChange}
+        />
+        <button type="submit">등록</button>
+      </form>
+      <ul>
+        {data.array.map((info) => (
+          <li key={info.id} onClick={() => onRemove(info.id)}>
+            {info.username}({info.name})
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
