@@ -9,7 +9,6 @@ function increase(number, callback) {
 
 const CallFunc = () => {
   console.log("작업 시작");
-
   increase(0, (result) => {
     console.log(result);
     increase(result, (result) => {

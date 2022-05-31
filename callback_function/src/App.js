@@ -1,8 +1,8 @@
-import CallFunc from "./CallFunc";
+import PromiseTest from "./PromiseTest";
 const App = () => {
   return (
     <div>
-      <CallFunc />
+      <PromiseTest />
     </div>
   );
 };
