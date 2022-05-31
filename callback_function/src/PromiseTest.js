@@ -1,5 +1,6 @@
 ﻿function increase(number) {
   const promise = new Promise((resolve, reject) => {
+    //resolve는 성공, reject는 실패
     setTimeout(() => {
       const result = number + 10;
       if (result > 50) {
@@ -13,41 +14,31 @@
   return promise;
 }
 
+async function runTasks() {
+  try {
+    //try/catch 구문을 사용하여 에러를 처리합니다.
+    let result = await increase(0);
+    console.log(result);
+    result = await increase(result);
+    console.log(result);
+    result = await increase(result);
+    console.log(result);
+    result = await increase(result);
+    console.log(result);
+    result = await increase(result);
+    console.log(result);
+    result = await increase(result);
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 const PromiseTest = () => {
-  increase(0)
-    .then((number) => {
-      //Promise에서 resolve 된 값은 .then을 통해 받아 올 수 있음
-      console.log(number);
-      return increase(number); //Promise를 리턴하면
-    })
-    .then((number) => {
-      //또 .then으로 처리 기능
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .catch((e) => {
-      //도중에 에러가 발생한다면 .catch를 통해 알 수 있음
-      console.log(e);
-    });
+  runTasks();
   return (
     <div>
-      <h1>Promise</h1>
+      <h1>Async/Await</h1>
     </div>
   );
 };
