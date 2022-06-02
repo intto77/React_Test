@@ -23,7 +23,7 @@ const sampleArticle = {
   urlToImage: "https://via.placeholder.com/160",
 };
 
-const NewList = () => {
+const NewList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -32,8 +32,9 @@ const NewList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const query = category === "all" ? "" : `&category=${category}`;
         const response = await axios.get(
-          "https://newsapi.org/v2/top-headlines?country=kr&apiKey=00248aff774441178ec1d9fcf0a28665",
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=00248aff774441178ec1d9fcf0a28665`,
         );
         setArticles(response.data.articles);
       } catch (e) {
@@ -42,7 +43,7 @@ const NewList = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [category]);
 
   //대기 중일 때
   if (loading) {
