@@ -11,5 +11,4 @@ https://www.youtube.com/watch?v=UKdQjQX1Pko</br>
 
 ⭐ https://snazzymaps.com/
 
-⭐Hostinger is my personal recommendation for hosting - https://www.hostinger.com/javascriptm...
-Use the code JAVASCRIPTMASTERY to save up to 91% on all yearly hosting plans.
+⭐ https://travel-advisor-intto77.netlify.app/
