@@ -1,4 +1,4 @@
-﻿import { useQuery } from "react-query";
+﻿﻿import { useQuery } from "react-query";
 import { getUsersPage } from "./api/axios";
 import { useState } from "react";
 import User from "./User";

@@ -1,4 +1,4 @@
-﻿const Post = ({ post }) => {
+﻿﻿const Post = ({ post }) => {
   return (
     <article>
       <h2>{post.title}</h2>
