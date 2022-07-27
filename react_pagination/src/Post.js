@@ -7,5 +7,4 @@
     </article>
   );
 };
-
 export default Post;

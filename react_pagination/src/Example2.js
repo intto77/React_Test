@@ -20,9 +20,13 @@ const Example2 = () => {
 
   if (isLoading) return <p>Loading Users...</p>;
 
-  if (isError) return <p>Error:{error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   const content = users.data.map((user) => <User key={user.id} user={user} />);
+
+  const nextPage = () => setPage((prev) => prev + 1);
+
+  const prevPage = () => setPage((prev) => prev - 1);
 
   const lastPage = () => setPage(users.total_pages);
 
@@ -34,15 +38,20 @@ const Example2 = () => {
 
   const nav = (
     <nav className="nav-ex2">
-      <button onClick={firstPage} disabled={isPreviousData || page === 1}>
+      <button onClick={prevPage} disabled={isPreviousData || page === 1}>
         &lt;&lt;
       </button>
       {/* Removed isPreviousData from PageButton to keep button focus color instead */}
       {pagesArray.map((pg) => (
-        <PageButton key={pg} pg={pg} setPage={setPage} />
+        <PageButton
+          key={pg}
+          pg={pg}
+          setPage={setPage}
+          isPreviousData={isPreviousData}
+        />
       ))}
       <button
-        onclick={lastPage}
+        onClick={nextPage}
         disabled={isPreviousData || page === users.total_pages}
       >
         &gt;&gt;
@@ -58,5 +67,4 @@ const Example2 = () => {
     </>
   );
 };
-
 export default Example2;

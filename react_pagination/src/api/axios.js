@@ -14,6 +14,9 @@ export const axiosTwo = axios.create({
 });
 
 export const getUsersPage = async (pageParam = 1) => {
-  const response = await axiosTwo.get(`/users?_page=${pageParam}`);
+  console.log(pageParam);
+  const response = await axiosTwo.get(`/users?page=${pageParam}`);
+
+  console.log(response.data);
   return response.data;
 };
