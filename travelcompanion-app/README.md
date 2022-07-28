@@ -11,7 +11,4 @@ https://www.youtube.com/watch?v=UKdQjQX1Pko</br>
 
 ⭐ https://snazzymaps.com/
 
-⭐ https://travel-advisor-intto77.netlify.app/
-
-
 ![image](https://user-images.githubusercontent.com/97278496/181166259-3e2a8356-b144-4f52-aed0-fe03d36bdf1c.png)
